@@ -49,27 +49,53 @@
 
 
 //Linear Search
-import java.util.*;
-public class ArraysCC {
-    public static int linearSearch(int numbers[], int key) {
-        for(int i=0; i<numbers.length; i++) {
-           if(numbers[i] == key) {
-            return i;
-           }
-        }
+// import java.util.*;
+// public class ArraysCC {
+//     public static int linearSearch(int numbers[], int key) {
+//         for(int i=0; i<numbers.length; i++) {
+//            if(numbers[i] == key) {
+//             return i;
+//            }
+//         }
 
-        return -1;
-    }
-    public static void main(String args[]){
-        int numbers[] = {2,4,6,8,10,12,14,16 };
-        int key =10;
+//         return -1;
+//     }
+//     public static void main(String args[]){
+//         int numbers[] = {2,4,6,8,10,12,14,16 };
+//         int key =10;
 
-        int index= linearSearch(numbers , key);
-        if(index == -1 ) {
-            System.out.println("NOT found");
-        }else {
-            System.out.println("key is at index:" + index);
-        }
+//         int index= linearSearch(numbers , key);
+//         if(index == -1 ) {
+//             System.out.println("NOT found");
+//         }else {
+//             System.out.println("key is at index:" + index);
+//         }
        
-    }
-}
+//     }
+// }
+
+
+//To find Smallest and Largest  number
+// import java.util.*;
+// public class ArraysCC {
+//     public static int getLargest(int numbers[]) {
+//         int largest = Integer.MIN_VALUE; // -infinity
+//         int smallest = Integer.MAX_VALUE; // +infinity
+
+//         for(int i=0; i<numbers.length; i++) {
+//            if(largest < numbers[i]) {
+//             largest = numbers[i];
+//            }
+//            if(smallest > numbers[i]) {
+//             smallest = numbers[i];
+//            }
+//         }
+//         System.out.println("smallest value is : " + smallest);
+
+//         return largest;
+//     }
+//     public static void main(String args[]){
+//         int numbers[] = {2,4,6,8,10,12,14,16 };
+//         System.out.println("Largest value is :" + getLargest(numbers));
+//     }
+// }
