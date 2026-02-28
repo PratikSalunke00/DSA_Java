@@ -183,27 +183,60 @@
 
 
 //To print subarray
+// import java.util.*;
+// public class ArraysCC {
+//     public static void printSubarrays(int numbers[]) {
+//         int ts =0;
+//         for(int i=0; i<numbers.length; i++) {
+//             int start = i;
+//             for(int j=i; j<numbers.length; j++) {
+//                 int end = j;
+//                 for(int k = start; k<end; k++){ //print
+//                     System.out.print(numbers[k] + " "); //subarray
+//                 }
+//                 ts++;
+//                 System.out.println();
+//         }
+//         System.out.println();
+//        }
+//         System.out.println("total subarray : " + ts);
+
+//     }
+//     public static void main(String args[]){
+//         int numbers[] = {2,4,6,8,10};
+//         printSubarrays(numbers);
+//     }
+// }
+
+
+//To print max subarray
 import java.util.*;
 public class ArraysCC {
-    public static void printSubarrays(int numbers[]) {
-        int ts =0;
+    public static void maxSubarraySum(int numbers[]) {
+        int currSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+
         for(int i=0; i<numbers.length; i++) {
             int start = i;
             for(int j=i; j<numbers.length; j++) {
                 int end = j;
+                currSum = 0;
                 for(int k = start; k<end; k++){ //print
-                    System.out.print(numbers[k] + " "); //subarray
+                   currSum += numbers[k];
                 }
-                ts++;
-                System.out.println();
+          
+                System.out.println(currSum);
+                if(maxSum < currSum) {
+                    maxSum = currSum;
+                }
         }
-        System.out.println();
+      
        }
-        System.out.println("total subarray : " + ts);
+        System.out.println("max sum = " + maxSum);
 
     }
     public static void main(String args[]){
         int numbers[] = {2,4,6,8,10};
-        printSubarrays(numbers);
+        maxSubarraySum(numbers);
     }
 }
