@@ -280,25 +280,64 @@
 
 
 // To print max of subarray using kadanes algorithm
-import java.util.*;
-public class ArraysCC {
-    public static void kadanes(int numbers[]) {
-        int ms = Integer.MIN_VALUE;
-        int cs =0;
+// import java.util.*;
+// public class ArraysCC {
+//     public static void kadanes(int numbers[]) {
+//         int ms = Integer.MIN_VALUE;
+//         int cs =0;
 
-        for(int i=0; i<numbers.length; i++) {
-            cs = cs+ numbers[i];
-            if(cs<0) {
-                cs=0;
-            }
-            ms = Math.max(cs,ms);
+//         for(int i=0; i<numbers.length; i++) {
+//             cs = cs+ numbers[i];
+//             if(cs<0) {
+//                 cs=0;
+//             }
+//             ms = Math.max(cs,ms);
+//         }
+
+//         System.out.println("our max subarray sum is :" +ms);
+//     }
+
+//     public static void main(String args[]) {
+//         int numbers[] = {-2,-3,4,-1,-2,1,5,-3};
+//         kadanes(numbers);
+//     }  
+// }
+
+
+// Trapping of Rain Water 22 no. problem in DSA sheet
+import java.util.*;
+
+public class ArraysCC{
+    public static int trappedRainWater(int height[]) {
+        int n = height.length;
+        //to calculate left max boundry -> array
+        int leftMax[] = new int[n];
+        leftMax[0] = height[0];
+        for(int i=1; i<n; i++) {
+            leftMax[i] = Math.max(height[i] , leftMax[i-1]);
         }
 
-        System.out.println("our max subarray sum is :" +ms);
+        //to calculate right max boundry -> array
+        int rightMax[] = new int[n];
+        rightMax[n-1] = height[n-1];
+        for(int i= n-2; i>=0; i--) {
+            rightMax[i] = Math.max(height[i] , rightMax[i+1]);
+        }
+
+        int trappedWater = 0;
+        //loop
+        for(int i=0; i<n; i++) {
+            //waterLevel = min(leftmax bound , rightmax boundry)
+            int waterLevel = Math.min(leftMax[i] , rightMax[i]);
+            
+            //trapped water = waterLevel - height[i]
+            trappedWater += waterLevel - height[i];
+        }
+        return trappedWater;
     }
 
     public static void main(String args[]) {
-        int numbers[] = {-2,-3,4,-1,-2,1,5,-3};
-        kadanes(numbers);
-    }  
+        int height[] = {4,2,0,6,3,2,5};
+        System.out.println( trappedRainWater(height));
+    }
 }
