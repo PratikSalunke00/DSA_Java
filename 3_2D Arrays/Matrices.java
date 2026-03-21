@@ -138,3 +138,39 @@
 //         System.out.println(diagonalSum(matrix));  
 //     }
 // }
+
+
+// Search in a Row-wise and Column-wise Sorted Matrix
+import java.util.*;
+public class Matrices {
+
+    public static boolean staircaseSearch(int matrix[][], int key) {
+        int row = 0;
+        int col = matrix[0].length - 1;
+
+        while (row < matrix.length && col >= 0) {
+            if (matrix[row][col] == key) {
+                System.out.println("Key found at index (" + row + ", " + col + ")");
+                //returning true if key is found in the matrix
+                return true;
+            }
+            else if (matrix[row][col] < key) {
+                row++;
+            }
+            else {
+                col--;
+            }
+        }
+        System.out.println("Key not found in the matrix");
+        return false;
+    }
+    public static void main(String[] args) {
+        int matrix[][] = {{1,2,3,4},
+                          {5,6,7,8},
+                          {9,10,11,12},
+                          {13,14,15,16}};
+        staircaseSearch(matrix, 5); 
+    }
+}
+
+
