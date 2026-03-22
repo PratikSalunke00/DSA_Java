@@ -118,7 +118,7 @@
 // }
 
 
-//String compression
+//String comparison
 // 👉 == checks memory location (reference)
 // 👉 .equals() checks actual value (content)
 // import java.util.*;
@@ -155,7 +155,7 @@
 // }
 
 
-//Substring check
+//String Function - substring
 // import java.util.*;
 // public class Strings{
 //     // public static String substring(String str, int si, int ei){
@@ -172,5 +172,22 @@
 //         String str = "Hello World";
 //         // System.out.println(substring(str, 0, 5));
 //         System.out.println(str.substring(0, 5));
+//     }
+// }
+
+
+//Find the largest string in an array of strings
+// import java.util.*;
+// public class Strings{
+//     public static void main(String args[]){
+//         String fruits[] = {"Apple", "Mango", "Banana"};
+
+//         String largest = fruits[0];
+//         for(int i=1; i<fruits.length; i++) {
+//             if(largest.compareTo(fruits[i]) < 0) {
+//                 largest = fruits[i];
+//             }
+//         }
+//         System.out.println(largest);
 //     }
 // }
