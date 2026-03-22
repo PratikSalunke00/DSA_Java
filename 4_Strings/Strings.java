@@ -52,7 +52,7 @@
 // }
 
 
-//Palindrome check
+// Palindrome check
 // import java.util.*;
 // public class Strings {
 //     public static boolean isPalindrome(String str) {
@@ -73,3 +73,47 @@
 //         System.out.println(isPalindrome(str2));
 //     }
 // }
+
+
+
+//Given a route containing 4 directions (E, W, N, S), find the shortest path to reach destination "WNEENESENNN" from origin (0, 0).
+// In such problems, each direction (E, W, N, S) is implicitly assumed to be 1 unit move.
+// 👉 This is a standard convention in:
+// Grid problems
+// Coordinate geometry
+// Pathfinding questions
+// import java.util.*;
+// public class Strings {
+//     public static float getShortestPath(String path) {
+//         int x=0 , y=0;
+//         for(int i=0; i<path.length(); i++) {
+//             char dir = path.charAt(i);
+//             //East
+//             if(dir == 'E') {
+//                 x++;
+//             } 
+//             //West
+//             else if(dir == 'W') {
+//                 x--;
+//             } 
+//             // North
+//             else if(dir == 'N') {
+//                 y++;
+//             } 
+//             // South
+//             else if(dir == 'S') {
+//                 y--;
+//             }
+//         }
+
+//         int X2 = x*x;
+//         int Y2 = y*y;
+//         return (float)Math.sqrt(X2 + Y2);
+//     }
+
+//     public static void main(String args[]) {
+//         String path = "WNEENESENNN";
+//         System.out.println(getShortestPath(path));
+//     }  
+// }
+
