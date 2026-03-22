@@ -117,3 +117,39 @@
 //     }  
 // }
 
+
+//String compression
+// 👉 == checks memory location (reference)
+// 👉 .equals() checks actual value (content)
+// import java.util.*;
+// public class Strings{
+//     public static void main(String args[]){
+//         String s1 = "Virat";
+//         String s2 = "Virat";
+//         String s3 = new String("Virat");
+
+//         //In Java, string literals are interned, meaning that they refer to the same memory location if they have the same content.
+//         // if(s1 == s2) {
+//         //     System.out.println("s1 and s2 are same");
+//         // } else {
+//         //     System.out.println("s1 and s2 are different");
+//         // }
+
+//         // // However, when you create a string using the new keyword, it creates a new object in memory,
+//         // // even if the content is the same.
+//         // // Therefore, s1 and s3 will not refer to the same memory location.
+//         // if(s1 == s3) {
+//         //     System.out.println("s1 and s2 are same");
+//         // } else {
+//         //     System.out.println("s1 and s2 are different");
+//         // }
+
+//         // To compare the content of strings, you should use the equals() method,
+//         //  which checks for value equality rather than reference equality. 
+//         if(s1.equals(s3)) {
+//             System.out.println("s1 and s3 are same");
+//         } else {
+//             System.out.println("s1 and s3 are different");
+//         }
+//     }
+// }
