@@ -153,3 +153,24 @@
 //         }
 //     }
 // }
+
+
+//Substring check
+// import java.util.*;
+// public class Strings{
+//     // public static String substring(String str, int si, int ei){
+//     //    //substring from index si to ei-1
+//     //     String substr = "";
+//     //     for(int i=si; i<ei; i++) {
+//     //         substr += str.charAt(i);
+//     //     }
+//     //     return substr;
+//     // }
+
+//     public static void main(String args[]){
+//         //substring from index 0 to 5
+//         String str = "Hello World";
+//         // System.out.println(substring(str, 0, 5));
+//         System.out.println(str.substring(0, 5));
+//     }
+// }
