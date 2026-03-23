@@ -1,4 +1,4 @@
-//Constructors
+ 
 // public class Constructors {
 //     public static void main(String args[]){
 //         Student s1 = new Student();
@@ -59,13 +59,24 @@ class Student {
     String password;
     int marks[];
 
-    // Copy Constructor
+    // shallow Copy Constructor
+    // Student(Student s1){
+    //     marks = new int[3];
+    //     this.name = s1.name;
+    //     this.roll = s1.roll;
+    //     // this will create a shallow copy of the marks array, both s1 and s2 will point to the same array in memory
+    //     this.marks = s1.marks; 
+    // }
+
+    // Deep Copy Constructor
     Student(Student s1){
         marks = new int[3];
         this.name = s1.name;
         this.roll = s1.roll;
-        // this will create a shallow copy of the marks array, both s1 and s2 will point to the same array in memory
-        this.marks = s1.marks; 
+        // this will create a deep copy of the marks array, both s1 and s2 will point to different arrays in memory
+        for(int i=0; i<3; i++) {
+            this.marks[i] = s1.marks[i];
+        }
     }
 
     //Default Constructor
@@ -86,4 +97,4 @@ class Student {
         marks = new int[3];
         this.roll = roll;
     }
-}
+} 
