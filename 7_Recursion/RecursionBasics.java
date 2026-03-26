@@ -53,3 +53,24 @@
 //         System.out.println(fact(n));
 //     }
 // }
+
+
+//sum of first n natural numbers using recursion
+public class RecursionBasics {
+    public static int sum(int n){
+        // Base case
+        if(n == 1){
+            return 1;
+        }
+
+        //snm1 = sum of first n-1 natural numbers
+        int snm1 = sum(n-1);
+        int sn = n + snm1;
+        return sn;
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        System.out.println(sum(n));
+    }
+}
