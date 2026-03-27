@@ -56,21 +56,43 @@
 
 
 //sum of first n natural numbers using recursion
-public class RecursionBasics {
-    public static int sum(int n){
-        // Base case
-        if(n == 1){
-            return 1;
-        }
+// public class RecursionBasics {
+//     public static int sum(int n){
+//         // Base case
+//         if(n == 1){
+//             return 1;
+//         }
 
-        //snm1 = sum of first n-1 natural numbers
-        int snm1 = sum(n-1);
-        int sn = n + snm1;
-        return sn;
-    }
+//         //snm1 = sum of first n-1 natural numbers
+//         int snm1 = sum(n-1);
+//         int sn = n + snm1;
+//         return sn;
+//     }
 
-    public static void main(String[] args) {
-        int n = 5;
-        System.out.println(sum(n));
-    }
-}
+//     public static void main(String[] args) {
+//         int n = 5;
+//         System.out.println(sum(n));
+//     }
+// }
+
+
+//To calculate the nth Fibonacci number using recursion
+// public class RecursionBasics {
+//     public static int fib(int n){
+//         // Base case
+//         if(n==0 || n==1){
+//             return n;
+//         }
+
+//         //fnm1 = fib of n-1
+//         int fnm1 = fib(n-1);
+//         int fnm2 = fib(n-2);
+//         int fn = fnm1 + fnm2;
+//         return fn;
+//     }
+
+//     public static void main(String[] args) {
+//         int n = 25;
+//         System.out.println(fib(n));
+//     }
+// }
