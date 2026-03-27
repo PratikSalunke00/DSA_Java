@@ -167,23 +167,53 @@
 
 
 //To calculate x^n using recursion
+// public class RecursionBasics {
+//     public static int power(int x , int n){
+//         if(n == 0) {
+//             return 1;
+//         }
+
+//         int xnm1 = power(x, n-1);
+//         int xn = x * xnm1;
+//         return xn;
+
+//         // return x * power(x, n-1);
+
+//     }
+
+//     public static void main(String[] args) {
+//         int x = 2;
+//         int n = 10;
+//         System.out.println(power(x, n));
+//     }
+// }
+
+
+//To calculate x^n using optimized recursion (log n)
 public class RecursionBasics {
-    public static int power(int x , int n){
+    public static int optimizedpower(int a , int n){
         if(n == 0) {
             return 1;
         }
 
-        int xnm1 = power(x, n-1);
-        int xn = x * xnm1;
-        return xn;
+        int halfpower = optimizedpower(a, n/2);
+        int halfpowerSq = halfpower * halfpower;
 
-        // return x * power(x, n-1);
+        // If n is odd then we need to multiply an extra 'a' to the result
+        if(n % 2 != 0){
+            halfpowerSq = a * halfpowerSq;
+        }
+
+        return halfpowerSq;
 
     }
 
     public static void main(String[] args) {
-        int x = 2;
+        int a = 2;
         int n = 10;
-        System.out.println(power(x, n));
+        System.out.println(optimizedpower(a, n));
     }
 }
+
+
+
