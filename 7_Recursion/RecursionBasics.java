@@ -143,23 +143,24 @@
 // }
 
 
-//
-public class RecursionBasics {
-    public static int firstOcc(int arr[], int key, int i){
-        // Base case
-        if(i == arr.length){
-            return -1;
-        }
+//To find the last occurrence of a key in an array using recursion
+// public class RecursionBasics {
+//     public static int lastOcc(int arr[], int key, int i){
+//         // Base case
+//         if(i == arr.length){
+//             return -1;
+//         }
+        
+//         int isFound = lastOcc(arr, key, i+1);
+//         if(isFound == -1 && arr[i] == key){
+//             return i;
+//         }
 
-        if(arr[i] == key){
-            return i;
-        }
+//         return isFound;
+//     }
 
-        return firstOcc(arr, key, i+1);
-    }
-
-    public static void main(String[] args) {
-        int arr[] = {1, 2, 3, 4, 5, 2, 7};
-        System.out.println(firstOcc(arr, 5, 0));
-    }
-}
+//     public static void main(String[] args) {
+//         int arr[] = {5,5,5,5,5,5,5};
+//         System.out.println(lastOcc(arr, 5, 0));
+//     }
+// }
