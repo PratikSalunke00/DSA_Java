@@ -205,7 +205,6 @@ public class RecursionBasics {
         }
 
         return halfpowerSq;
-
     }
 
     public static void main(String[] args) {
@@ -214,6 +213,3 @@ public class RecursionBasics {
         System.out.println(optimizedpower(a, n));
     }
 }
-
-
-

@@ -17,10 +17,38 @@
 //         int totalWays = fnm1 + fnm2;
 //         return totalWays;
 
-
-
 //     }
 //     public static void main(String[] args) {
 //         System.out.println(tilingProblem(4));
+//     }
+// }
+
+
+// Remove Duplicates
+// public class Recursion2 {
+//     public static int removeDuplicates(String str , int idx, StringBuilder newStr, boolean map[]){
+//         //base case
+//         if(idx == str.length()){
+//             System.out.println(newStr);
+//             return 1;
+//         }
+//         //kaam
+//         char currChar = str.charAt(idx);
+//         int totalCount = 0;
+//         if(map[currChar - 'a'] == true){
+//             //duplicate
+//             totalCount += removeDuplicates(str, idx+1, newStr, map);
+//         }else{
+//             //not duplicate
+//             map[currChar - 'a'] = true;
+//             totalCount += removeDuplicates(str, idx+1, newStr.append(currChar), map);
+//         }
+//         return totalCount;
+//     }
+
+//     public static void main(String[] args) {
+//         String str = "appnnacollege";
+//         boolean map[] = new boolean[26];
+//         System.out.println(removeDuplicates(str, 0, new StringBuilder(""), map));
 //     }
 // }
