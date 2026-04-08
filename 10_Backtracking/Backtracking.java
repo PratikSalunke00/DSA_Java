@@ -53,3 +53,27 @@
 //         findSubsets(str, "", 0);
 //     }
 // }
+
+
+//Permutations of a string using backtracking
+// public class Backtracking{
+//     public static void findPermutation(String str, String ans ){
+//         //base case
+//         if(str.length() == 0) {
+//             System.out.println(ans);
+//             return;
+//         }
+
+//         //recursive case(kaam)
+//         for(int i = 0 ; i < str.length() ; i++) {
+//             char curr = str.charAt(i);
+//             String newStr = str.substring(0, i) + str.substring(i+1); 
+//             findPermutation(newStr, ans + curr);//+ is used to add the current character to the answer string like "a" + "b" = "ab"
+//         }
+//     }
+
+//     public static void main(String args[]) {
+//         String str = "abc";
+//         findPermutation(str, "");
+//     }
+// }
