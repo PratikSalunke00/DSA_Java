@@ -85,25 +85,63 @@
 
 
 //Sorting an ArrayList
+// import java.util.ArrayList;
+// import java.util.Collections;
+// public class ArrayLists{
+
+//     public static void main(String args[]) {   
+//         ArrayList<Integer> list = new ArrayList<>();
+//         list.add(1);
+//         list.add(2);
+//         list.add(6);
+//         list.add(4);
+//         list.add(5);
+//         System.out.println(list);
+
+//         //Sorting an ArrayList
+//         Collections.sort(list);
+//         System.out.println(list);
+
+//         //reverse an ArrayList
+//         Collections.reverse(list);
+//         System.out.println(list);
+
+//         Collections.sort(list, Collections.reverseOrder()); //Comparator
+//         System.out.println(list);
+//     }
+// }
+
+
+//Multidimensional ArrayList
 import java.util.ArrayList;
-import java.util.Collections;
 public class ArrayLists{
-
+    
     public static void main(String args[]) {   
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(6);
-        list.add(4);
-        list.add(5);
-        System.out.println(list);
+        ArrayList<ArrayList<Integer>> mainList = new ArrayList<>();
+        
+        ArrayList<Integer> list1 = new ArrayList<>();  //to add 1,2,3,4,5
+        ArrayList<Integer> list2 = new ArrayList<>();  //to add 2,4,6,8,10
+        ArrayList<Integer> list3 = new ArrayList<>();  //to add 3,6,9,12,15
 
-        //Sorting an ArrayList
-        Collections.sort(list);
-        System.out.println(list);
+        for(int i=1; i<=5; i++){
+            list1.add(i*1);
+            list2.add(i*2);
+            list3.add(i*3);
+        }
 
-        //reverse an ArrayList
-        Collections.reverse(list);
-        System.out.println(list);
+        mainList.add(list1);
+        mainList.add(list2);    
+        mainList.add(list3);
+
+        System.out.println(mainList);
+
+        //To print the multidimensional arraylist
+        for(int i=0; i<mainList.size(); i++){
+            ArrayList<Integer> currList = mainList.get(i);
+            for(int j=0; j<currList.size(); j++){
+                System.out.print(currList.get(j) + " ");
+            }
+            System.out.println();
+        }
     }
 }
