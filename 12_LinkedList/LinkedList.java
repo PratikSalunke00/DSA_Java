@@ -198,14 +198,63 @@ public class LinkedList{
 
     }
 
+
+    //Find mid of linked list - Slow and fast approach
+    public Node findMid(Node head) {  //return type is Node because we want to return mid node  
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null) {
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+        }
+        return slow; //slow is mid node
+    }
+
+    //palindrome linked list
+    public boolean isPalindrome() {
+        //base case
+        if(head == null || head.next == null) {
+            return true;
+        }
+
+        //step1 - find mid
+        Node midNode = findMid(head);
+
+        //step2 - reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+
+        while(curr != null) { //reverse logic
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node right = prev; //right half head
+        Node left = head;
+
+        //step3 - check left half and right half
+        while(right != null) {
+            if(left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
     public static void main(String args[]) {
         LinkedList ll = new LinkedList();
-        ll.addFirst(2);
-        ll.addFirst(1);
-        ll.addLast(3);
-        ll.addLast(4);
-        ll.add(2, 9);
-        ll.print(); // 1->2->9->3->4->null
+        // ll.addFirst(2);
+        // ll.addFirst(1);
+        // ll.addLast(3);
+        // ll.addLast(4);
+        // ll.add(2, 9);
+        // ll.print(); // 1->2->9->3->4->null
 
         // System.out.println(size); // 5
         // System.out.println(ll.removeFirst()); // 1
@@ -225,8 +274,16 @@ public class LinkedList{
         // ll.print(); // 3->9->2->null
 
         //Delete nth node from last..
-        ll.deleteNthfromEnd(2);
-        ll.print(); // 3->2->null
+        // ll.deleteNthfromEnd(2);
+        // ll.print(); // 3->2->null
+
+        //Palindrome linked list
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(2);
+        ll.addLast(1);
+        System.out.println(ll.isPalindrome()); // true
+
     }
 }
 
