@@ -247,8 +247,61 @@ public class LinkedList{
         return true;
     }
 
+    
+    //dtect cycle in linked list - Floyd's cycle detection algorithm
+    public static boolean isCycle() {
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null) {
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+
+            if(slow == fast) {
+                return true; //cycle exists
+            }
+        }
+        return false; //cycle does not exist
+    }
+
+
+    //remove cycle in linked list
+    public static void removeCycle() {
+        //detect cycle
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+
+        while(fast != null && fast.next != null) {
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+
+            if(slow == fast) {
+                cycle = true;
+                break;
+            }
+        }
+
+        if(cycle == false) {
+            return;
+        }
+
+        //find meeting point
+        slow = head;
+        Node prev = null; //to remove cycle
+        while(slow != fast) {  //if slow==fast -> meeting point
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        //remove cycle -> last node next = null
+        prev.next = null;
+
+    }
+
     public static void main(String args[]) {
-        LinkedList ll = new LinkedList();
+        // LinkedList ll = new LinkedList();
         // ll.addFirst(2);
         // ll.addFirst(1);
         // ll.addLast(3);
@@ -278,12 +331,31 @@ public class LinkedList{
         // ll.print(); // 3->2->null
 
         //Palindrome linked list
-        ll.addLast(1);
-        ll.addLast(2);
-        ll.addLast(2);
-        ll.addLast(1);
-        System.out.println(ll.isPalindrome()); // true
+        // ll.addLast(1);
+        // ll.addLast(2);
+        // ll.addLast(2);
+        // ll.addLast(1);
+        // System.out.println(ll.isPalindrome()); // true
 
+
+        //Cycle detection in linked list
+        // head = new Node(1);
+        // head.next = new Node(2);
+        // head.next.next = new Node(3);
+        // head.next.next.next = head; //creating a cycle
+        // System.out.println(isCycle()); // true
+        
+
+        //Remove cycle in linked list
+        head = new Node(1);
+        Node temp = new Node(2);
+        head.next = temp;
+        head.next.next = new Node(3);
+        head.next.next.next = temp; //creating a cycle
+
+        System.out.println(isCycle()); // true
+        removeCycle();
+        System.out.println(isCycle()); // false
     }
 }
 
