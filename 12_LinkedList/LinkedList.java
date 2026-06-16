@@ -167,6 +167,37 @@ public class LinkedList{
         head = prev; // Update head to the new front of the list
     }
 
+
+    //Delete nth node from last
+    public void deleteNthfromEnd(int n) {
+        //calculate size
+        int sz = 0 ; //size
+        Node temp = head;
+        while(temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+        
+        //to delete head
+        if(n == sz) {
+            head = head.next;
+            return;
+        }
+
+        // sz-n
+        int i = 1;
+        int iToFind = sz - n;
+        Node prev = head;
+        while(i < iToFind) {
+            prev = prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+        return;
+
+    }
+
     public static void main(String args[]) {
         LinkedList ll = new LinkedList();
         ll.addFirst(2);
@@ -176,22 +207,26 @@ public class LinkedList{
         ll.add(2, 9);
         ll.print(); // 1->2->9->3->4->null
 
-        System.out.println(size); // 5
-        System.out.println(ll.removeFirst()); // 1
-        System.out.println(size); // 4
-        ll.print(); // 2->9->3->4->null
+        // System.out.println(size); // 5
+        // System.out.println(ll.removeFirst()); // 1
+        // System.out.println(size); // 4
+        // ll.print(); // 2->9->3->4->null
 
-        ll.removeLast();
-        ll.print(); // 2->9->3->null
-        System.out.println(size); // 3
+        // ll.removeLast();
+        // ll.print(); // 2->9->3->null
+        // System.out.println(size); // 3
 
-        // System.out.println(ll.itrSearch(9)); // 1
-        // System.out.println(ll.itrSearch(5)); // -1
-        System.out.println(ll.recSearch(9)); // 1
-        System.out.println(ll.recSearch(5)); // -1
+        // // System.out.println(ll.itrSearch(9)); // 1
+        // // System.out.println(ll.itrSearch(5)); // -1
+        // System.out.println(ll.recSearch(9)); // 1
+        // System.out.println(ll.recSearch(5)); // -1
 
-            ll.reverse();
-            ll.print(); // 3->9->2->null
+        // ll.reverse();
+        // ll.print(); // 3->9->2->null
+
+        //Delete nth node from last..
+        ll.deleteNthfromEnd(2);
+        ll.print(); // 3->2->null
     }
 }
 
