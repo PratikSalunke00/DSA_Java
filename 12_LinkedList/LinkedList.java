@@ -363,6 +363,44 @@
 
 //Merge sort in linked list
 public class LinkedList{
+    //Node class
+    public static class Node{
+        int data;
+        Node next;
+
+        public Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+    }
+    public static Node head;
+    public static Node tail;
+
+    //add first
+    public void addFirst(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head; //Linking
+        head = newNode;
+    }
+
+    //print linked list
+    public void print(){
+        if(head == null){
+            System.out.println("LinkedList is empty");
+            return;
+        }
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
     //mid node
     private Node getMid(Node head) {
         Node slow = head;
@@ -419,6 +457,7 @@ public class LinkedList{
         //left and right half
         Node rightHead = mid.next;
         mid.next = null; //break the link
+
         Node newLeftHead = mergeSort(head); //left half
         Node newRightHead = mergeSort(rightHead); //right half
 
