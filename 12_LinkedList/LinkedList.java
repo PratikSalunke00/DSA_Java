@@ -362,6 +362,126 @@
 
 
 //Merge sort in linked list
+// public class LinkedList{
+//     //Node class
+//     public static class Node{
+//         int data;
+//         Node next;
+
+//         public Node(int data){
+//             this.data = data;
+//             this.next = null;
+//         }
+//     }
+//     public static Node head;
+//     public static Node tail;
+
+//     //add first
+//     public void addFirst(int data){
+//         Node newNode = new Node(data);
+//         if(head == null){
+//             head = tail = newNode;
+//             return;
+//         }
+//         newNode.next = head; //Linking
+//         head = newNode;
+//     }
+
+//     //print linked list
+//     public void print(){
+//         if(head == null){
+//             System.out.println("LinkedList is empty");
+//             return;
+//         }
+//         Node temp = head;
+//         while(temp != null){
+//             System.out.print(temp.data + "->");
+//             temp = temp.next;
+//         }
+//         System.out.println("null");
+//     }
+
+//     //mid node
+//     private Node getMid(Node head) {
+//         Node slow = head;
+//         Node fast = head.next;
+
+//         while(fast != null && fast.next != null) {
+//             slow = slow.next; //+1
+//             fast = fast.next.next; //+2
+//         }
+//         return slow; //slow is mid node
+//     }
+
+//     private Node merge(Node head1, Node head2) {
+//         Node mergedLL = new Node(-1); //dummy node
+//         Node temp = mergedLL;
+
+//         while(head1 != null && head2 != null) {
+//             if(head1.data <= head2.data) {
+//                 temp.next = head1;
+//                 head1 = head1.next;
+//                 temp = temp.next;
+//             }
+//             else {
+//                 temp.next = head2;
+//                 head2 = head2.next;
+//                 temp = temp.next;
+//             }
+//         }
+
+//         while(head1 != null) {
+//             temp.next = head1;
+//             head1 = head1.next;
+//             temp = temp.next;
+//         }
+
+//         while(head2 != null) {
+//             temp.next = head2;
+//             head2 = head2.next;
+//             temp = temp.next;
+//         }
+
+//         return mergedLL.next; //returning the merged linked list
+//     }
+
+//     public Node mergeSort(Node head) {
+//         //base case
+//         if(head == null || head.next == null) {
+//             return head;
+//         }
+
+//         //find mid
+//         Node mid = getMid(head);
+
+//         //left and right half
+//         Node rightHead = mid.next;
+//         mid.next = null; //break the link
+
+//         Node newLeftHead = mergeSort(head); //left half
+//         Node newRightHead = mergeSort(rightHead); //right half
+
+//         //merge left and right half
+//         return merge(newLeftHead, newRightHead);
+//     }
+
+//     public static void main(String args[]) {
+//         LinkedList ll = new LinkedList();
+//         ll.addFirst(1);
+//         ll.addFirst(2); 
+//         ll.addFirst(3);
+//         ll.addFirst(4);
+//         ll.addFirst(5);
+//         ll.print(); // 5->4->3->2->1->null
+
+//         ll.head = ll.mergeSort(ll.head);
+//         ll.print(); // 1->2->3->4->null
+//     }
+// }
+//....................................................
+
+
+//Zig-Zag linked list
 public class LinkedList{
     //Node class
     public static class Node{
@@ -375,6 +495,7 @@ public class LinkedList{
     }
     public static Node head;
     public static Node tail;
+    public static int size;  
 
     //add first
     public void addFirst(int data){
@@ -385,6 +506,18 @@ public class LinkedList{
         }
         newNode.next = head; //Linking
         head = newNode;
+    }
+
+    //Add last
+    public void addLast(int data){
+        Node newNode = new Node(data);
+        size++;
+        if(head == null){
+            head = tail = newNode;
+            return;
+        }
+        tail.next = newNode; //Linking
+        tail = newNode;
     }
 
     //print linked list
@@ -401,80 +534,56 @@ public class LinkedList{
         System.out.println("null");
     }
 
-    //mid node
-    private Node getMid(Node head) {
+    public void zigZag() {
+        //find mid
         Node slow = head;
         Node fast = head.next;
 
         while(fast != null && fast.next != null) {
-            slow = slow.next; //+1
-            fast = fast.next.next; //+2
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        return slow; //slow is mid node
-    }
+        Node mid = slow;
 
-    private Node merge(Node head1, Node head2) {
-        Node mergedLL = new Node(-1); //dummy node
-        Node temp = mergedLL;
+        //reverse 2nd half
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next;
 
-        while(head1 != null && head2 != null) {
-            if(head1.data <= head2.data) {
-                temp.next = head1;
-                head1 = head1.next;
-                temp = temp.next;
-            }
-            else {
-                temp.next = head2;
-                head2 = head2.next;
-                temp = temp.next;
-            }
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
 
-        while(head1 != null) {
-            temp.next = head1;
-            head1 = head1.next;
-            temp = temp.next;
+        Node left = head; //
+        Node right = prev; //
+        Node nextL , nextR;
+
+        //alt merge - zig zag merge
+        while(left != null && right != null) {
+            nextL = left.next;
+            left.next= right;
+            nextR = right.next;
+            right.next = nextL;
+
+            left = nextL;
+            right = nextR;
         }
-
-        while(head2 != null) {
-            temp.next = head2;
-            head2 = head2.next;
-            temp = temp.next;
-        }
-
-        return mergedLL.next; //returning the merged linked list
-    }
-
-    public Node mergeSort(Node head) {
-        //base case
-        if(head == null || head.next == null) {
-            return head;
-        }
-
-        //find mid
-        Node mid = getMid(head);
-
-        //left and right half
-        Node rightHead = mid.next;
-        mid.next = null; //break the link
-
-        Node newLeftHead = mergeSort(head); //left half
-        Node newRightHead = mergeSort(rightHead); //right half
-
-        //merge left and right half
-        return merge(newLeftHead, newRightHead);
     }
 
     public static void main(String args[]) {
         LinkedList ll = new LinkedList();
-        ll.addFirst(1);
-        ll.addFirst(2); 
-        ll.addFirst(3);
-        ll.addFirst(4);
-        ll.addFirst(5);
-        ll.print(); // 5->4->3->2->1->null
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+        ll.addLast(5);
 
-        ll.head = ll.mergeSort(ll.head);
-        ll.print(); // 1->2->3->4->null
+        ll.print();
+        ll.zigZag();
+        ll.print();
     }
 }
