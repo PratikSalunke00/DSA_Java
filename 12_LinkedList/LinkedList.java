@@ -361,4 +361,81 @@
 //.......................................................
 
 
+//Merge sort in linked list
+public class LinkedList{
+    //mid node
+    private Node getMid(Node head) {
+        Node slow = head;
+        Node fast = head.next;
 
+        while(fast != null && fast.next != null) {
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+        }
+        return slow; //slow is mid node
+    }
+
+    private Node merge(Node head1, Node head2) {
+        Node mergedLL = new Node(-1); //dummy node
+        Node temp = mergedLL;
+
+        while(head1 != null && head2 != null) {
+            if(head1.data <= head2.data) {
+                temp.next = head1;
+                head1 = head1.next;
+                temp = temp.next;
+            }
+            else {
+                temp.next = head2;
+                head2 = head2.next;
+                temp = temp.next;
+            }
+        }
+
+        while(head1 != null) {
+            temp.next = head1;
+            head1 = head1.next;
+            temp = temp.next;
+        }
+
+        while(head2 != null) {
+            temp.next = head2;
+            head2 = head2.next;
+            temp = temp.next;
+        }
+
+        return mergedLL.next; //returning the merged linked list
+    }
+
+    public Node mergeSort(Node head) {
+        //base case
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        //find mid
+        Node mid = getMid(head);
+
+        //left and right half
+        Node rightHead = mid.next;
+        mid.next = null; //break the link
+        Node newLeftHead = mergeSort(head); //left half
+        Node newRightHead = mergeSort(rightHead); //right half
+
+        //merge left and right half
+        return merge(newLeftHead, newRightHead);
+    }
+
+    public static void main(String args[]) {
+        LinkedList ll = new LinkedList();
+        ll.addFirst(1);
+        ll.addFirst(2); 
+        ll.addFirst(3);
+        ll.addFirst(4);
+        ll.addFirst(5);
+        ll.print(); // 5->4->3->2->1->null
+
+        ll.head = ll.mergeSort(ll.head);
+        ll.print(); // 1->2->3->4->null
+    }
+}
