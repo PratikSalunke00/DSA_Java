@@ -47,58 +47,80 @@
 
 
 // Stack implementation using Linked List
-import java.util.ArrayList;
-public class Stack{
-    static class Node{
-        int data;
-        Node next;
+// import java.util.ArrayList;
+// public class Stack{
+//     static class Node{
+//         int data;
+//         Node next;
 
-        public Node(int data){
-            this.data = data;
-            this.next = null;
-        }
-    }
+//         public Node(int data){
+//             this.data = data;
+//             this.next = null;
+//         }
+//     }
     
-    static class StackLinkedList{
-        static Node head = null;
+//     static class StackLinkedList{
+//         static Node head = null;
 
-        // Check if the stack is empty
-        public static boolean isEmpty(){  //boolean return true or false
-            return head == null;
-        }
+//         // Check if the stack is empty
+//         public static boolean isEmpty(){  //boolean return true or false
+//             return head == null;
+//         }
 
-        //push
-        public static void push(int data){
-            Node newNode = new Node(data);
-            if(isEmpty()){
-                head = newNode;
-                return;
-            }
-            newNode.next = head;
-            head = newNode;
-        }
+//         //push
+//         public static void push(int data){
+//             Node newNode = new Node(data);
+//             if(isEmpty()){
+//                 head = newNode;
+//                 return;
+//             }
+//             newNode.next = head;
+//             head = newNode;
+//         }
 
-        //pop
-        public static int pop(){
-            if(isEmpty()){
-                return -1;
-            }
-            int top = head.data;
-            head = head.next;
-            return top;
-        }
+//         //pop
+//         public static int pop(){
+//             if(isEmpty()){
+//                 return -1;
+//             }
+//             int top = head.data;
+//             head = head.next;
+//             return top;
+//         }
 
-        //peek
-        public static int peek(){
-            if(isEmpty()){
-                return -1;
-            }
-            return head.data;
-        }
-    }
+//         //peek
+//         public static int peek(){
+//             if(isEmpty()){
+//                 return -1;
+//             }
+//             return head.data;
+//         }
+//     }
+
+//     public static void main(String args[]){
+//         StackLinkedList s = new StackLinkedList();
+//         s.push(1);
+//         s.push(2);
+//         s.push(3);
+//         while(!s.isEmpty()){
+//             System.out.println(s.peek());
+//             s.pop();
+//         }
+//     }
+// }
+//...................................................
+
+
+//Stack using java collections framework
+import java.util.*;
+public class Stack{
 
     public static void main(String args[]){
-        StackLinkedList s = new StackLinkedList();
+        // StackLinkedList s = new StackLinkedList();
+        // Stack<Integer> s = new Stack<>();  //this comment because my folder have same Stack file ,
+        //  but this is main method of java collections framework
+        
+        java.util.Stack<Integer> s = new java.util.Stack<>();  //this use because my folder have same Stack file
         s.push(1);
         s.push(2);
         s.push(3);
