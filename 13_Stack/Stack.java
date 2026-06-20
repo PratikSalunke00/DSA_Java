@@ -133,29 +133,59 @@
 
 
 //Question 1 : Push at the bottom of stack ...
-import java.util.*;
+// import java.util.*;
+
+// public class Stack{
+//     public static void pushAtBottom(java.util.Stack<Integer> s, int data){
+//         if(s.isEmpty()){
+//             s.push(data);
+//             return;
+//         }
+//         int top = s.pop();
+//         pushAtBottom(s, data);
+//         s.push(top);
+//     }
+
+//     public static void main(String args[]) {
+//         java.util.Stack<Integer> s = new java.util.Stack<>();
+//         s.push(1);
+//         s.push(2);
+//         s.push(3);
+
+//         pushAtBottom(s, 4);
+//         while(!s.isEmpty()){ //to check the stack after push at bottom and now print by peek and pop
+//             System.out.println(s.peek());
+//             s.pop();
+//         }
+//     }
+// }
+
+
+//Question 2 : Reverse a string using stack
+ import java.util.*;
 
 public class Stack{
-    public static void pushAtBottom(java.util.Stack<Integer> s, int data){
-        if(s.isEmpty()){
-            s.push(data);
-            return;
+    public static String reverseString(String str) {
+        java.util.Stack<Character> s = new java.util.Stack<>();
+        int idx = 0;
+        while(idx<str.length()){
+            s.push(str.charAt(idx));
+            idx++;
         }
-        int top = s.pop();
-        pushAtBottom(s, data);
-        s.push(top);
+
+        StringBuilder result = new StringBuilder("");
+        while(!s.isEmpty()){
+            char curr = s.pop();
+            result.append(curr);
+        }
+
+        str = result.toString();
+        return str;
     }
 
     public static void main(String args[]) {
-        java.util.Stack<Integer> s = new java.util.Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-
-        pushAtBottom(s, 4);
-        while(!s.isEmpty()){ //to check the stack after push at bottom and now print by peek and pop
-            System.out.println(s.peek());
-            s.pop();
-        }
+        String str = "Hello";
+        str = reverseString(str);
+        System.out.println(str);
     }
 }
