@@ -162,30 +162,69 @@
 
 
 //Question 2 : Reverse a string using stack
+//  import java.util.*;
+// public class Stack{
+//     public static String reverseString(String str) {
+//         java.util.Stack<Character> s = new java.util.Stack<>();
+//         int idx = 0;
+//         while(idx<str.length()){
+//             s.push(str.charAt(idx));
+//             idx++;
+//         }
+
+//         StringBuilder result = new StringBuilder("");
+//         while(!s.isEmpty()){
+//             char curr = s.pop();
+//             result.append(curr);
+//         }
+
+//         str = result.toString();
+//         return str;
+//     }
+
+//     public static void main(String args[]) {
+//         String str = "Hello";
+//         str = reverseString(str);
+//         System.out.println(str);
+//     }
+// }
+
+
+//Question 3 : reverse a stack using recursion
  import java.util.*;
-
 public class Stack{
-    public static String reverseString(String str) {
-        java.util.Stack<Character> s = new java.util.Stack<>();
-        int idx = 0;
-        while(idx<str.length()){
-            s.push(str.charAt(idx));
-            idx++;
+    public static void pushAtBottom(java.util.Stack<Integer> s, int data){
+        if(s.isEmpty()){
+            s.push(data);
+            return;
         }
+        int top = s.pop();
+        pushAtBottom(s, data);
+        s.push(top);
+    }
 
-        StringBuilder result = new StringBuilder("");
+    public static void reverseStack(java.util.Stack<Integer> s){
+        if(s.isEmpty()){
+            return;
+        }
+        int top = s.pop();
+        reverseStack(s);
+        pushAtBottom(s, top);
+    }
+
+    public static void printStack(java.util.Stack<Integer> s){
         while(!s.isEmpty()){
-            char curr = s.pop();
-            result.append(curr);
+            System.out.println(s.pop());
         }
-
-        str = result.toString();
-        return str;
     }
 
     public static void main(String args[]) {
-        String str = "Hello";
-        str = reverseString(str);
-        System.out.println(str);
+        java.util.Stack<Integer> s = new java.util.Stack<>();
+        s.push(1);
+        s.push(2);
+        s.push(3); //3->2->1
+
+        reverseStack(s);
+        printStack(s); //1->2->3
     }
 }
