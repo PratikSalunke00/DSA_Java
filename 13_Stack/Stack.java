@@ -112,23 +112,50 @@
 
 
 //Stack using java collections framework
-import java.util.*;
-public class Stack{
+// import java.util.*;
+// public class Stack{
 
-    public static void main(String args[]){
-        // StackLinkedList s = new StackLinkedList();
-        // Stack<Integer> s = new Stack<>();  //this comment because my folder have same Stack file ,
-        //  but this is main method of java collections framework
+//     public static void main(String args[]){
+//         // StackLinkedList s = new StackLinkedList();
+//         // Stack<Integer> s = new Stack<>();  //this comment because my folder have same Stack file ,
+//         //  but this is main method of java collections framework
         
-        java.util.Stack<Integer> s = new java.util.Stack<>();  //this use because my folder have same Stack file
+//         java.util.Stack<Integer> s = new java.util.Stack<>();  //this use because my folder have same Stack file
+//         s.push(1);
+//         s.push(2);
+//         s.push(3);
+//         while(!s.isEmpty()){
+//             System.out.println(s.peek());
+//             s.pop();
+//         }
+//     }
+// }
+
+
+//Question 1 : Push at the bottom of stack ...
+import java.util.*;
+
+public class Stack{
+    public static void pushAtBottom(java.util.Stack<Integer> s, int data){
+        if(s.isEmpty()){
+            s.push(data);
+            return;
+        }
+        int top = s.pop();
+        pushAtBottom(s, data);
+        s.push(top);
+    }
+
+    public static void main(String args[]) {
+        java.util.Stack<Integer> s = new java.util.Stack<>();
         s.push(1);
         s.push(2);
         s.push(3);
-        while(!s.isEmpty()){
+
+        pushAtBottom(s, 4);
+        while(!s.isEmpty()){ //to check the stack after push at bottom and now print by peek and pop
             System.out.println(s.peek());
             s.pop();
         }
     }
 }
-
-
