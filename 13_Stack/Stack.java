@@ -191,40 +191,117 @@
 
 
 //Question 3 : reverse a stack using recursion
- import java.util.*;
+//  import java.util.*;
+// public class Stack{
+//     public static void pushAtBottom(java.util.Stack<Integer> s, int data){
+//         if(s.isEmpty()){
+//             s.push(data);
+//             return;
+//         }
+//         int top = s.pop();
+//         pushAtBottom(s, data);
+//         s.push(top);
+//     }
+
+//     public static void reverseStack(java.util.Stack<Integer> s){
+//         if(s.isEmpty()){
+//             return;
+//         }
+//         int top = s.pop();
+//         reverseStack(s);
+//         pushAtBottom(s, top);
+//     }
+
+//     public static void printStack(java.util.Stack<Integer> s){
+//         while(!s.isEmpty()){
+//             System.out.println(s.pop());
+//         }
+//     }
+
+//     public static void main(String args[]) {
+//         java.util.Stack<Integer> s = new java.util.Stack<>();
+//         s.push(1);
+//         s.push(2);
+//         s.push(3); //3->2->1
+
+//         reverseStack(s);
+//         printStack(s); //1->2->3
+//     }
+// }
+
+
+//Stack Span Problem
+// import java.util.*;
+// public class Stack{
+//     public static void stockSpan(int stocks[] , int span[]) {
+//         java.util.Stack<Integer> s= new java.util.Stack<>();
+//         span[0] = 1;
+//         s.push(o); //span of 0 is always 1
+
+//         //to check everydays span
+//         for(int i=1; i<stocks.length; i++) {
+//             int currPrice = stocks[i];
+
+//             //to find prevHigh than currPrice so ,
+//             // first remove small prices idxes to reach to prevHigh
+//             while(!s.isEmpty() && currPrice > stocks[s.peek()]) {
+//                 s.pop();
+//             }
+
+//             if(s.isEmpty()){
+//                 span[i] = i+1;
+//             } else {
+//                 int prevHigh = s.peek();
+//                 span[i] =i-prevHigh;
+//             }
+
+//             //or apne idx ko stack me push kar denge jiska span find kiya
+//             s.push(i);
+//         }
+//     }
+
+//     public static void main(String args[]) {
+//         int stocks[]  = {100,80,60,70,60,85,100};
+//         int span[] = new int[stocks.length];
+//         stockSpan(stocks, span);
+
+//         for(int i=0; i<span.length; i++) {
+//             System.out.println(span[i]+ " ");
+//         }
+//     }
+// }
+
+
+//Question 5 : Next Greater Element
+import java.util.*;
 public class Stack{
-    public static void pushAtBottom(java.util.Stack<Integer> s, int data){
-        if(s.isEmpty()){
-            s.push(data);
-            return;
-        }
-        int top = s.pop();
-        pushAtBottom(s, data);
-        s.push(top);
-    }
-
-    public static void reverseStack(java.util.Stack<Integer> s){
-        if(s.isEmpty()){
-            return;
-        }
-        int top = s.pop();
-        reverseStack(s);
-        pushAtBottom(s, top);
-    }
-
-    public static void printStack(java.util.Stack<Integer> s){
-        while(!s.isEmpty()){
-            System.out.println(s.pop());
-        }
-    }
-
     public static void main(String args[]) {
+        int arr[] = {6,8,0,1,3};
         java.util.Stack<Integer> s = new java.util.Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3); //3->2->1
+        int nextGreater[] = new int[arr.length];
 
-        reverseStack(s);
-        printStack(s); //1->2->3
+        for(int i=arr.length-1; i>=0; i--) {
+            //1 while
+            while(!s.isEmpty() && arr[s.peek()] <= arr[i]) {
+                s.pop();
+            }
+
+            //2 if-else
+            if(s.isEmpty()) {
+                nextGreater[i] = -1;
+            } else {
+                nextGreater[i] = arr[s.peek()];
+            }
+
+            //3 push
+            s.push(i);
+        }
+
+        
+        for(int j=0; j<nextGreater.length; j++) {
+            System.out.print(nextGreater[j]+ " ");
+        }
+
+        System.out.println();
     }
 }
