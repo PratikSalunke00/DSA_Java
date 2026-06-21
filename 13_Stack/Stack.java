@@ -273,35 +273,73 @@
 
 
 //Question 5 : Next Greater Element
-import java.util.*;
-public class Stack{
-    public static void main(String args[]) {
-        int arr[] = {6,8,0,1,3};
-        java.util.Stack<Integer> s = new java.util.Stack<>();
-        int nextGreater[] = new int[arr.length];
+// import java.util.*;
+// public class Stack{
+//     public static void main(String args[]) {
+//         int arr[] = {6,8,0,1,3};
+//         java.util.Stack<Integer> s = new java.util.Stack<>();
+//         int nextGreater[] = new int[arr.length];
 
-        for(int i=arr.length-1; i>=0; i--) {
-            //1 while
-            while(!s.isEmpty() && arr[s.peek()] <= arr[i]) {
-                s.pop();
-            }
+//         for(int i=arr.length-1; i>=0; i--) {
+//             //1 while
+//             while(!s.isEmpty() && arr[s.peek()] <= arr[i]) {
+//                 s.pop();
+//             }
 
-            //2 if-else
-            if(s.isEmpty()) {
-                nextGreater[i] = -1;
-            } else {
-                nextGreater[i] = arr[s.peek()];
-            }
+//             //2 if-else
+//             if(s.isEmpty()) {
+//                 nextGreater[i] = -1;
+//             } else {
+//                 nextGreater[i] = arr[s.peek()];
+//             }
 
-            //3 push
-            s.push(i);
-        }
+//             //3 push
+//             s.push(i);
+//         }
 
         
-        for(int j=0; j<nextGreater.length; j++) {
-            System.out.print(nextGreater[j]+ " ");
-        }
+//         for(int j=0; j<nextGreater.length; j++) {
+//             System.out.print(nextGreater[j]+ " ");
+//         }
 
-        System.out.println();
+//         System.out.println();
+//     }
+// }
+
+
+//Valid Parentheses
+import java.util.*;
+public class Stack {
+    public static boolean isValid(String str) {
+        java.util.Stack<Character> s = new java.util.Stack<>();
+
+        for(int i=0; i<str.length(); i++) {
+            char ch = str.charAt(i);
+
+            //Opening parentheses
+            if(ch == '(' || ch == '{' || ch == '[') {
+                s.push(ch);
+            } else {
+                //Closing parentheses
+                if(s.isEmpty()) {
+                    return false;
+                }
+                if((ch == ')' && s.peek() != '(')
+                 || (ch == '}' && s.peek() != '{')
+                 || (ch == ']' && s.peek() != '[')) {
+                    return false;
+                }
+                s.pop();
+            }
+        }
+        if(s.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static void main(String args[]) {
+        String str = "({[]})";
+        System.out.println(isValid(str));
     }
 }
