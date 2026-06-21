@@ -308,38 +308,74 @@
 
 
 //Valid Parentheses
+// import java.util.*;
+// public class Stack {
+//     public static boolean isValid(String str) {
+//         java.util.Stack<Character> s = new java.util.Stack<>();
+
+//         for(int i=0; i<str.length(); i++) {
+//             char ch = str.charAt(i);
+
+//             //Opening parentheses
+//             if(ch == '(' || ch == '{' || ch == '[') {
+//                 s.push(ch);
+//             } else {
+//                 //Closing parentheses
+//                 if(s.isEmpty()) {
+//                     return false;
+//                 }
+//                 if((ch == ')' && s.peek() != '(')
+//                  || (ch == '}' && s.peek() != '{')
+//                  || (ch == ']' && s.peek() != '[')) {
+//                     return false;
+//                 }
+//                 s.pop();
+//             }
+//         }
+//         if(s.isEmpty()) {
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
+//     public static void main(String args[]) {
+//         String str = "({[]})";
+//         System.out.println(isValid(str));
+//     }
+// }
+
+
+//Question 7 : Duplicate Parentheses
 import java.util.*;
-public class Stack {
-    public static boolean isValid(String str) {
+public class Stack{
+    public static boolean isDuplicate(String str) {
         java.util.Stack<Character> s = new java.util.Stack<>();
 
         for(int i=0; i<str.length(); i++) {
             char ch = str.charAt(i);
 
-            //Opening parentheses
-            if(ch == '(' || ch == '{' || ch == '[') {
-                s.push(ch);
+            if(ch == ')') {
+                int count = 0;
+                while(!s.isEmpty() && s.peek() != '(') {
+                    s.pop();
+                    count++;
+                }
+                if(count < 1) {
+                    return true;
+                } else {
+                    s.pop(); //pop opening bracket
+                }
             } else {
-                //Closing parentheses
-                if(s.isEmpty()) {
-                    return false;
-                }
-                if((ch == ')' && s.peek() != '(')
-                 || (ch == '}' && s.peek() != '{')
-                 || (ch == ']' && s.peek() != '[')) {
-                    return false;
-                }
-                s.pop();
+                s.push(ch);
             }
         }
-        if(s.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
+
     public static void main(String args[]) {
-        String str = "({[]})";
-        System.out.println(isValid(str));
+        String str = "((a+b))"; //true
+        String str1 = "(a+b)"; //false
+        System.out.println(isDuplicate(str));
+        System.out.println(isDuplicate(str1));
     }
 }
