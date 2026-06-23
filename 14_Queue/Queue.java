@@ -257,59 +257,149 @@
 
 
 //Queue using two stack
+//Push O(n)
+// import java.util.*;
+// public class Queue{
+//     static class QueueB{
+//         static Stack<Integer> s1 = new Stack<>();
+//         static Stack<Integer> s2 = new Stack<>();
+
+//         public static boolean isEmpty() {
+//             return s1.isEmpty();
+//         }
+
+//         //add
+//         public static void add(int data) {
+//             while(!isEmpty()) {
+//                 s2.push(s1.pop());
+//             }
+
+//             s1.push(data);
+
+//             while(!s2.isEmpty()){
+//                 s1.push(s2.pop());
+//             }
+//         }
+
+//         //remove
+//         public static int remove() {
+//             if(isEmpty()) {
+//                 System.out.println("queue empty");
+//                 return -1;
+//             }
+
+//             return s1.pop();
+//         }
+
+//         //peek
+//         public static int peek() {
+//             if(isEmpty()) {
+//                 System.out.println("queue empty");
+//                 return -1;
+//             }
+
+//             return s1.peek();
+//         }
+//     }
+
+//     public static void main(String args[]) {
+//         QueueB q = new QueueB();
+//         q.add(1);
+//         q.add(2);
+//         q.add(3);
+
+//         while(!q.isEmpty()) {
+//             System.out.println(q.peek());
+//             q.remove();
+//         }
+//     }
+// }
+
+
+//Stack using 2 Queues
+//Pop O(n)
 import java.util.*;
 public class Queue{
-    static class QueueB{
-        static Stack<Integer> s1 = new Stack<>();
-        static Stack<Integer> s2 = new Stack<>();
+    static class Stack{
+        static java.util.Queue<Integer> q1 = new LinkedList<>();
+        static java.util.Queue<Integer> q2 = new LinkedList<>();
 
         public static boolean isEmpty() {
-            return s1.isEmpty();
+            return q1.isEmpty() && q2.isEmpty();
         }
 
-        //add
-        public static void add(int data) {
-            while(!isEmpty()) {
-                s2.push(s1.pop());
-            }
-
-            s1.push(data);
-
-            while(!s2.isEmpty()){
-                s1.push(s2.pop());
+        public static void push(int data) {
+            if(!q1.isEmpty()) {
+                q1.add(data);
+            } else {
+                q2.add(data);
             }
         }
 
-        //remove
-        public static int remove() {
+        //pop
+        public static int pop() {
             if(isEmpty()) {
-                System.out.println("queue empty");
+                System.out.println("empty stack");
                 return -1;
             }
+            int top = -1;
 
-            return s1.pop();
+            //case 1 - all el in q1
+            if(!q1.isEmpty()) {
+                while(!q1.isEmpty()) {
+                    top = q1.remove();
+                    if(q1.isEmpty()) {
+                        break;
+                    }
+                    q2.add(top);
+                }
+            } else { //case 2 - all el in q2
+                while(!q2.isEmpty()) {
+                    top = q2.remove();
+                    if(q2.isEmpty()) {
+                        break;
+                    }
+                    q1.add(top);
+                }
+            }
+            return top;
         }
 
         //peek
         public static int peek() {
             if(isEmpty()) {
-                System.out.println("queue empty");
+                System.out.println("empty stack");
                 return -1;
             }
+            int top = -1;
 
-            return s1.peek();
+            //case 1 - all el in q1
+            if(!q1.isEmpty()) {
+                while(!q1.isEmpty()) {
+                    top = q1.remove();
+                    
+                    q2.add(top);
+                }
+            } else { //case 2 - all el in q2
+                while(!q2.isEmpty()) {
+                    top = q2.remove();
+                   
+                    q1.add(top);
+                }
+            }
+            return top;
         }
     }
 
     public static void main(String args[]) {
-        QueueB q = new QueueB();
-        q.add(1);
-        q.add(2);
-        q.add(3);
+        Stack s = new Stack();
+        s.push(1);
+        s.push(2);
+        s.push(3);
 
-        while(!q.isEmpty()) {
-            System.out.println(q.peek());
-            q.remove();
+        while(!s.isEmpty()) {
+            System.out.println(s.peek());
+            s.pop();
         }
     }
 }
