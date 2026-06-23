@@ -236,14 +236,73 @@
 
 
 //Queue using java collection framework
+// import java.util.*;
+// public class Queue{
+
+//     public static void main(String args[]) {
+//         // QueueB q = new QueueB();
+//         // java.util.Queue<Integer> q = new LinkedList<>(); //queue is interface his obj cannot be made
+//         // or using ArrayDeque()
+//         java.util.Queue<Integer> q = new ArrayDeque<>(); 
+//         q.add(1);
+//         q.add(2);
+//         q.add(3);
+
+//         while(!q.isEmpty()) {
+//             System.out.println(q.peek());
+//             q.remove();
+//         }
+//     }
+// }
+
+
+//Queue using two stack
 import java.util.*;
 public class Queue{
+    static class QueueB{
+        static Stack<Integer> s1 = new Stack<>();
+        static Stack<Integer> s2 = new Stack<>();
+
+        public static boolean isEmpty() {
+            return s1.isEmpty();
+        }
+
+        //add
+        public static void add(int data) {
+            while(!isEmpty()) {
+                s2.push(s1.pop());
+            }
+
+            s1.push(data);
+
+            while(!s2.isEmpty()){
+                s1.push(s2.pop());
+            }
+        }
+
+        //remove
+        public static int remove() {
+            if(isEmpty()) {
+                System.out.println("queue empty");
+                return -1;
+            }
+
+            return s1.pop();
+        }
+
+        //peek
+        public static int peek() {
+            if(isEmpty()) {
+                System.out.println("queue empty");
+                return -1;
+            }
+
+            return s1.peek();
+        }
+    }
 
     public static void main(String args[]) {
-        // QueueB q = new QueueB();
-        // java.util.Queue<Integer> q = new LinkedList<>(); //queue is interface his obj cannot be made
-        // or using ArrayDeque()
-        java.util.Queue<Integer> q = new ArrayDeque<>(); 
+        QueueB q = new QueueB();
         q.add(1);
         q.add(2);
         q.add(3);
