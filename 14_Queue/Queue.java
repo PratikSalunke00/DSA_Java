@@ -408,7 +408,7 @@
 //First non-repeating letter in a stream of characters
 import java.util.*;
 public class Queue{
-    public static void printNonRepeating(String atr) {
+    public static void printNonRepeating(String str) {
         int freq[] = new int[26]; //'a'-'z'
         java.util.Queue<Character> q = new LinkedList<>();
 
@@ -417,7 +417,7 @@ public class Queue{
             q.add(ch);
             freq[ch - 'a'] ++;
 
-            while(!q.isEmpty() && freq[q.peek() = 'a'] > 1) {
+            while(!q.isEmpty() && freq[q.peek() - 'a'] > 1) {
                 q.remove();
             }
 
@@ -431,5 +431,6 @@ public class Queue{
 
     public static void main(String args[]) {
         String str = "aabccxb";
+        printNonRepeating(str);
     }
 }
