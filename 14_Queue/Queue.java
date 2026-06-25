@@ -476,34 +476,60 @@
 
 
 //Queue Reversal - 
+// import java.util.*;
+// public class Queue{
+//     public static void reverse(java.util.Queue<Integer> q) {
+//         Stack<Integer> s = new Stack<>();
+
+//         while(!q.isEmpty()) {
+//             s.push(q.remove());
+//         }
+
+//         while(!s.isEmpty()) {
+//             q.add(s.pop());
+//         }
+//     }
+//     public static void main(String args[]) {
+//         java.util.Queue<Integer> q = new LinkedList<>();
+//         q.add(1);
+//         q.add(2);
+//         q.add(3);
+//         q.add(4);
+//         q.add(5);
+
+//         reverse(q);
+
+//         //print Q
+//         while(!q.isEmpty()) {
+//             System.out.print(q.remove()+ " ");
+//         }
+
+//         System.out.println();
+//     }
+// }
+//...................................................
+
+
+//Deque
 import java.util.*;
 public class Queue{
-    public static void reverse(java.util.Queue<Integer> q) {
-        Stack<Integer> s = new Stack<>();
-
-        while(!q.isEmpty()) {
-            s.push(q.remove());
-        }
-
-        while(!s.isEmpty()) {
-            q.add(s.pop());
-        }
-    }
     public static void main(String args[]) {
-        java.util.Queue<Integer> q = new LinkedList<>();
-        q.add(1);
-        q.add(2);
-        q.add(3);
-        q.add(4);
-        q.add(5);
+        Deque<Integer> deque = new LinkedList<>();
+        deque.addFirst(1);
+        deque.addFirst(2);
+        System.out.println(deque);//2 1
 
-        reverse(q);
+        deque.removeFirst();
+        System.out.println(deque);//1
 
-        //print Q
-        while(!q.isEmpty()) {
-            System.out.print(q.remove()+ " ");
-        }
+        deque.addLast(3);
+        deque.addLast(4);
+        System.out.println(deque);
 
-        System.out.println();
+        deque.removeLast();
+        System.out.println(deque);
+
+        System.out.println("first el = " + deque.getFirst());
+        System.out.println("last el = " + deque.getLast());
     }
 }
