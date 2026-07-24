@@ -1,6 +1,5 @@
 // To printing marks using an array
 // import java.util.*;
-
 // public class ArraysCC {
 //     public static void main(String args[]) {
 //         int marks[] = new int[100];
@@ -101,7 +100,7 @@
 // }
 
 
-//Binary search
+// Binary search - needs sorted array  - O(log n)
 // import java.util.*;
 // public class ArraysCC {
 //     public static int binarySearch(int numbers[], int key) {
@@ -116,7 +115,7 @@
 //             }
 //             if(numbers[mid] < key ) { // right
 //                 start = mid+1;
-//             }else {//left
+//             } else { //left
 //                 end = mid - 1;
 //             }   
 //         }
@@ -164,17 +163,18 @@
 // public class ArraysCC {
 //     public static void printPairs(int numbers[]) {
 //         int tp =0;
-//        for(int i=0; i<numbers.length; i++) {
+
+//         for(int i=0; i<numbers.length; i++) {
 //         int curr = numbers[i]; //2,4,6,8,10
 //         for(int j=i+1; j<numbers.length; j++) {
-//             System.out.print("(" + curr + "," + numbers[j] + ") ");
+//             System.out.print( "(" + curr + "," + numbers[j] + ")" );
 //             tp++;
 //         }
 //         System.out.println();
-//        }
+//         }
 //         System.out.println("total pairs : " + tp);
-
 //     }
+
 //     public static void main(String args[]){
 //         int numbers[] = {2,4,6,8,10,12,14,16 };
 //         printPairs(numbers);
@@ -196,12 +196,12 @@
 //                 }
 //                 ts++;
 //                 System.out.println();
+//             }
+//             System.out.println();
 //         }
-//         System.out.println();
-//        }
 //         System.out.println("total subarray : " + ts);
-
 //     }
+
 //     public static void main(String args[]){
 //         int numbers[] = {2,4,6,8,10};
 //         printSubarrays(numbers);
@@ -229,12 +229,11 @@
 //                 if(maxSum < currSum) {
 //                     maxSum = currSum;
 //                 }
+//             }
 //         }
-      
-//        }
 //         System.out.println("max sum = " + maxSum);
-
 //     }
+
 //     public static void main(String args[]){
 //         int numbers[] = {2,4,6,8,10};
 //         maxSubarraySum(numbers);
@@ -365,5 +364,78 @@
 //     public static void main(String args[]) {
 //         int prices[] = {7,1,5,3,6,4};
 //         System.out.println(buyAndSellStocks(prices));
+//     }
+// }
+
+
+//.............................................................
+//217. Contains Duplicate
+// import java.util.*;
+// public class ArraysCC {
+//     public static boolean containsDuplicate(int nums[]) {
+//         // for(int i=0; i<nums.length; i++) {
+//         //     for(int j=i+1; j<nums.length; j++) {
+//         //         if(nums[i] == nums[j]) {
+//         //             return true;
+//         //         }
+//         //     }
+//         // }
+//         // return false;
+
+//         //another approach using sort
+//         Arrays.sort(nums);
+//         for(int i=0; i<nums.length-1; i++) {
+//             if(nums[i] == nums[i+1]) {
+//                 return true;
+//             }
+//         }
+//         return false;
+//     }
+
+//     public static void main(String args[]) {
+//        int nums[] = {1,2,3};
+//        boolean result = containsDuplicate(nums);
+//        System.out.println(result);
+//     }  
+// }
+
+
+//33. Search in Rotated Sorted Array
+// import java.util.*;
+// public class ArraysCC {
+//     public static int modifiedBinarySearch(int nums[], int target) {
+//         //to find mid
+//         int n = nums.length;
+//         int sp =0 , ep = n-1;
+        
+//         while(sp <= ep) {
+//             int mid = ((sp + ep) / 2 );
+
+//             if(nums[mid] == target) {
+//             return mid;
+//             }
+
+//             //case 1 - mid is on line 1
+//             if(nums[sp] <= nums[mid]) {  
+//                 if(nums[sp] <= target && target < nums[mid]) {
+//                     ep = mid - 1;
+//                 } else {
+//                     sp = mid + 1;
+//                 }
+//             } else {  //case 2 - mid is on line 2
+//                 if(nums[mid] < target && target <= nums[ep]) {
+//                     sp = mid + 1;
+//                 } else {
+//                     ep = mid - 1;
+//                 }
+//             }  
+//         } 
+//         return -1;
+//     }
+//     public static void main(String args[]){
+//         int nums[] = {5,1,3};
+//         int target = 5;
+//         int result= modifiedBinarySearch(nums,target);
+//         System.out.println(result);
 //     }
 // }
